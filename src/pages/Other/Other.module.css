@@ -1,0 +1,14 @@
+.bigStyles {
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.styles {
+    width: 400px;
+    height: 440px;
+}
