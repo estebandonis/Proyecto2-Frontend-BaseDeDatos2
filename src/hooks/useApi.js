@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = "http://127.0.0.1:5000/api";
 
 const useApi = () => {
   const [data, setData] = useState(null);
