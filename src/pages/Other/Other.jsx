@@ -1,7 +1,30 @@
 import { navigate } from "@store";
 import stiles from "./Other.module.css";
 
+import { useApi } from "@hooks";
+import axios from "axios";
+import { useEffect } from "react";
+
 const Other = () => {
+
+  const { apiUrl } = useApi();
+
+  const getData = async () => {
+    await axios
+      .get(`${apiUrl}/actores/info`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.log("An error occurred while retrieving data", error);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className={stiles.bigStyles}>
       <div className={stiles.styles}>

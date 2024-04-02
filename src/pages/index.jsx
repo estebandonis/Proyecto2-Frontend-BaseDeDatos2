@@ -3,6 +3,7 @@ import { routerKey } from "@storeon/router";
 
 import { default as Home } from "./Home";
 import { default as Other } from "./Other";
+import { default as Login } from "./Login";
 
 const Page = () => {
   const { [routerKey]: route } = useStoreon(routerKey);
@@ -14,6 +15,9 @@ const Page = () => {
       break;
     case "other":
       Component = <Other />;
+      break;
+    case "login":
+      Component = <Login />;
       break;
     default:
       Component = <h1>404 Error</h1>;
