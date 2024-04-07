@@ -3,7 +3,7 @@ import stiles from "./Login.module.css";
 
 import { useApi } from "@hooks";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Login = () => {
 
@@ -21,7 +21,10 @@ const Login = () => {
         contra: password,
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data, (typeof response.data));
+        if (response.data == true) {
+          navigate("/other");
+        }
       })
       .catch((error) => {
         // Handle the error

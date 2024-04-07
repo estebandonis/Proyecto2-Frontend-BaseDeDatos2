@@ -41,7 +41,6 @@ const Home = () => {
       <div className={stiles.styles}>
         <h1>Home</h1>
 
-        <button onClick={() => navigate("/other")}>Go to Other</button>
         <button onClick={() => navigate("/login")}>Go to Login</button>
       </div>
     </div>
