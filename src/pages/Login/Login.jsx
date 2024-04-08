@@ -1,6 +1,7 @@
 import { navigate } from "@store";
 import stiles from "./Login.module.css";
 
+import { useStoreon } from 'storeon/react'
 import { useApi } from "@hooks";
 import axios from "axios";
 import { useState } from "react";
@@ -8,6 +9,7 @@ import { useState } from "react";
 const Login = () => {
 
   const { apiUrl } = useApi();
+  const { dispatch } = useStoreon('user')
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,8 +24,9 @@ const Login = () => {
       })
       .then((response) => {
         console.log(response.data, (typeof response.data));
-        if (response.data == true) {
-          navigate("/other");
+        if (response.data !== false) {
+          dispatch('user/login', { correo: response.data['correo'], nombre: response.data['nombre'], apellido: response.data['apellido'], edad: response.data['edad'], pais: response.data['pais'], genero: response.data['genero'], preferencias: response.data['preferencias'] });
+          navigate("/main");
         }
       })
       .catch((error) => {

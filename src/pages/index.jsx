@@ -2,7 +2,7 @@ import { useStoreon } from "storeon/react";
 import { routerKey } from "@storeon/router";
 
 import { default as Home } from "./Home";
-import { default as Other } from "./Other";
+import { default as Main } from "./Main";
 import { default as Login } from "./Login";
 
 const Page = () => {
@@ -13,8 +13,8 @@ const Page = () => {
     case "home":
       Component = <Home />;
       break;
-    case "other":
-      Component = <Other />;
+    case "main":
+      Component = <Main />;
       break;
     case "login":
       Component = <Login />;

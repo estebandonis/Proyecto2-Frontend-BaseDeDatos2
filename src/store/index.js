@@ -1,10 +1,17 @@
 import { storeonDevtools } from "storeon/devtools";
 import { createStoreon } from "storeon";
-// import { persistState } from "@storeon/localstorage";
+import { persistState } from "@storeon/localstorage";
+import { routerNavigate } from "@storeon/router";
+import user from './user'
 import router from "./router";
-import { routerKey, routerNavigate } from "@storeon/router";
 
-const store = createStoreon([router, storeonDevtools]);
+const store = createStoreon([
+  router,
+  user,
+  storeonDevtools,
+
+  persistState(['user'])
+])
 
 const navigate = (target) => {
   console.log("NAVIGATING TO", target);

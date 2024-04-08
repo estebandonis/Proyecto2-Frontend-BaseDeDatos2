@@ -1,0 +1,15 @@
+
+.styles {
+    max-width: 600px;
+    max-height: 200px;
+    height: 100%;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: inherit;
+    color: white;
+  }
+  
