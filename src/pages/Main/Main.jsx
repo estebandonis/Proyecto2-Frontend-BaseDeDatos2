@@ -23,7 +23,7 @@ const Main = () => {
 
   const getPelicula = async () => {
     await axios
-      .post(`${apiUrl}/peliculas/getMovie`, {titulo: searchTerm})
+      .post(`${apiUrl}/peliculas/getMovieTitulo`, {titulo: searchTerm})
       .then((response) => {
         console.log(response.data);
         setPelicula(response.data);
