@@ -1,14 +1,22 @@
 .bigStyles {
-    background-color: black;
-    color: white;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    width: 100vw;
+    height: 100vh;
 }
 
 .styles {
-    width: 400px;
-    height: 440px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+}
+
+.listMovies {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    overflow-x: auto;
+    justify-content: space-between;
+    align-items: center;
 }

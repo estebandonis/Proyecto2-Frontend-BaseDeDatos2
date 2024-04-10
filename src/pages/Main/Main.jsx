@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navigate } from "@store";
-import stiles from "./Main.module.css";
 import { useStoreon } from 'storeon/react';
-import { useApi } from "@hooks";
 import axios from "axios";
+
+import { useApi } from "@hooks";
 import { Pelicula } from "@components";
-import { useEffect } from "react";
+import stiles from "./Main.module.css";
 
 const Main = () => {
 
@@ -71,7 +71,7 @@ const Main = () => {
         <button onClick={() => navigate("/")}>Go to Home</button>
 
         {pelicula.length !== 0 ?
-          <div>
+          <div className={stiles.listMovies}>
             {pelicula.map((pelicula, index) => (
               <Pelicula key={index}
                 clasificacion={pelicula.clasificacion}
@@ -83,8 +83,9 @@ const Main = () => {
             ))}
           </div> : null}
 
+          <label>Recomendaciones basandonos en tus generos preferidos</label>
           {peliculas.length !== 0 ?
-          <div>
+          <div className={stiles.listMovies}>
             {peliculas.map((pelicula, index) => (
               <Pelicula key={index}
                 clasificacion={pelicula.clasificacion}
