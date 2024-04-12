@@ -2,10 +2,11 @@ import estilos from './Pelicula.module.css'
 
 import PropTypes from 'prop-types';
 
-const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year }) => {
+const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year, averRating }) => {
 
     const click = () => {
         console.log("click")
+        console.log(averRating)
     }
 
     return (
@@ -18,6 +19,7 @@ const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year }) => {
                     <p>Año: {year}</p>
                     <p>Duración: {duracion}</p>
                     <p>Clasificación: {clasificacion}</p>
+                    <p>Rating: {averRating.toFixed(2)}</p>
                 </div>
             </div>
         </div>
@@ -30,6 +32,7 @@ Pelicula.propTypes = {
     sinopsis: PropTypes.string.isRequired,
     titulo: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
+    averRating: PropTypes.number
 };
 
 export default Pelicula;

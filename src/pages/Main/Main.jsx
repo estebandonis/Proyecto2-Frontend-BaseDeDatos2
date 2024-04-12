@@ -34,7 +34,7 @@ const Main = () => {
       });
   };
 
-  const getPeliculas = async (preferencia) => {
+  const getPeliculasByGenres = async (preferencia) => {
     await axios
       .post(`${apiUrl}/peliculas/getMovieGenero`, {genero: preferencia})
       .then((response) => {
@@ -47,9 +47,35 @@ const Main = () => {
       });
   };
 
+  const getPeliculasByDirector = async (preferencia) => {
+    await axios
+      .post(`${apiUrl}/peliculas/getMovieGenero`, {genero: preferencia})
+      .then((response) => {
+        console.log(response.data);
+        setPeliculas([...peliculas, ...response.data]);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.log("An error occurred while retrieving data", error);
+      });
+  }; 
+
+  const getPeliculasByActor = async (preferencia) => {
+    await axios
+      .post(`${apiUrl}/peliculas/getMovieGenero`, {genero: preferencia})
+      .then((response) => {
+        console.log(response.data);
+        setPeliculas([...peliculas, ...response.data]);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.log("An error occurred while retrieving data", error);
+      });
+  }; 
+
   const getRecomendations = async () => {
     user.preferencias.forEach(element => {
-      getPeliculas(element)
+      getPeliculasByGenres(element)
     })
   }
 
@@ -80,6 +106,7 @@ const Main = () => {
                 sinopsis={pelicula.sinopsis}
                 titulo={pelicula.titulo}
                 year={pelicula.year}
+                averRating={pelicula.averRating}
               />
             ))}
           </div> : null}
@@ -94,6 +121,7 @@ const Main = () => {
                 sinopsis={pelicula.sinopsis}
                 titulo={pelicula.titulo}
                 year={pelicula.year}
+                averRating={pelicula.averRating}
               />
             ))}
           </div> : null}
