@@ -4,6 +4,7 @@ import { routerKey } from "@storeon/router";
 import { default as Home } from "./Home";
 import { default as Main } from "./Main";
 import { default as Login } from "./Login";
+import { default as Actores } from "./Actores";
 
 const Page = () => {
   const { [routerKey]: route } = useStoreon(routerKey);
@@ -18,6 +19,9 @@ const Page = () => {
       break;
     case "login":
       Component = <Login />;
+      break;
+    case "actor":
+      Component = <Actores />;
       break;
     default:
       Component = <h1>404 Error</h1>;

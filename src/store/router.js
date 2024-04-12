@@ -4,4 +4,5 @@ export default createRouter([
   ["/", () => ({ page: "home" })],
   ["/main", () => ({ page: "main" })],
   ["/login", () => ({ page: "login" })],
+  ["/actor", () => ({ page: "actor" })]
 ]);

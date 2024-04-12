@@ -79,6 +79,8 @@ const Main = () => {
     })
   }
 
+
+
   useEffect(() => {
     getRecomendations();
   }, []);
@@ -87,7 +89,7 @@ const Main = () => {
     <div className={stiles.bigStyles}>
       <div className={stiles.styles}>
         <h1>Peliculas</h1>
-        
+        <button onClick={() => navigate("/actor")}>Actores</button>
         <input
           type="text"
           value={searchTerm}
