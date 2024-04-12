@@ -83,8 +83,8 @@ const Main = () => {
               />
             ))}
           </div> : null}
-
-          <label>Recomendaciones basandonos en tus generos preferidos</label>
+          
+          <h1>Recomendaciones basandonos en tus generos preferidos</h1>
           {peliculas.length !== 0 ?
           <div className={stiles.listMovies}>
             {peliculas.map((pelicula, index) => (

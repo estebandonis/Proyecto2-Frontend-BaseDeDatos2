@@ -29,8 +29,8 @@
   padding: 6px;
   box-sizing: border-box;
   position: relative;
-  bottom: 60px;
-  background: rgb(27, 27, 27, .5);
+  bottom: 75px;
+  background: rgb(100, 100, 100, .5);
   color: white;
   border-radius: 20px 20px 0px 0px;
   transition: .2s ease-in-out;
@@ -61,7 +61,7 @@
   height: 300px;
   width: 400px;
   background: black;
-  transform: translateY(-230px);
+  transform: translateY(-200px);
 }
 
 .card:hover .intro p {
