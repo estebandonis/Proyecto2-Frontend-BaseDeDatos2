@@ -61,6 +61,7 @@ const Main = () => {
     <div className={stiles.bigStyles}>
       <div className={stiles.styles}>
         <h1>Peliculas</h1>
+        
         <input
           type="text"
           value={searchTerm}
