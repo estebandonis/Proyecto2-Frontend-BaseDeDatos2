@@ -1,15 +1,71 @@
+.wrapper {
+  width: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
-.styles {
-    max-width: 600px;
-    max-height: 200px;
-    height: 100%;
-    border-radius: 30px;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: white;
-    color: black;
-  }
-  
+.wrapper:hover .caption {
+  visibility: visible;
+  transform: rotateX(0deg)
+}
+
+.card {
+  height: 300px;
+  width: 400px;
+  margin: 20px;
+  box-shadow: 5px 5px 20px black;
+  overflow: hidden;
+}
+
+.card img {
+  height: 300px;
+  width: 400px;
+  border-radius: 3px;
+}
+
+.intro {
+  height: 70px;
+  width: 300px;
+  padding: 6px;
+  box-sizing: border-box;
+  position: relative;
+  bottom: 60px;
+  background: rgb(27, 27, 27, .5);
+  color: white;
+  border-radius: 20px 20px 0px 0px;
+  transition: .2s ease-in-out;
+  white-space: normal;
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+.intro p {
+  visibility: hidden;
+  text-align: left;
+  font-weight: bold;
+  font-family: arial;
+  padding-left: 20px;
+  opacity: 0;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card:hover .intro {
+  height: 300px;
+  width: 400px;
+  background: black;
+  transform: translateY(-230px);
+}
+
+.card:hover .intro p {
+  opacity: 1;
+  visibility: visible;
+  transition: .2s ease-in-out;
+}

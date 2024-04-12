@@ -4,14 +4,23 @@ import PropTypes from 'prop-types';
 
 const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year }) => {
 
+    const click = () => {
+        console.log("click")
+    }
+
     return (
-            <div className={estilos.styles}>
-                <p>{clasificacion}</p>
-                <p>{duracion}</p>
-                <p>{sinopsis}</p>
-                <p>{titulo}</p>
-                <p>{year}</p>
+        <div className={estilos.wrapper}>
+            <div className={estilos.card} onClick={click}>
+                <img src={"https://w7.pngwing.com/pngs/650/454/png-transparent-clapperboard-icon-scalable-graphics-clapperboard-angle-white-text-thumbnail.png"} alt="" />
+                <div className={estilos.intro}>
+                    <div className={estilos.name}>{titulo}</div>
+                    <p>Sinopsis: {sinopsis}</p>
+                    <p>Año: {year}</p>
+                    <p>Duración: {duracion}</p>
+                    <p>Clasificación: {clasificacion}</p>
+                </div>
             </div>
+        </div>
     );
 };
 
