@@ -1,0 +1,25 @@
+.bigStyles {
+    width: 100%;
+    height: 100%;
+}
+
+.bigStyles::-webkit-scrollbar { /* For Chrome, Safari and Opera */
+    display: none;
+}
+
+.styles {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.listMovies {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+}

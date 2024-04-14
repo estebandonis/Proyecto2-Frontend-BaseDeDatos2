@@ -83,17 +83,6 @@ const Main = () => {
     })
   }
 
-  const orderPeliculas = () => {
-    if (desc) {
-      console.log(peliculas.sort((a, b) => (a.averRating > b.averRating) ? 1 : -1))
-      setPeliculas(peliculas.sort((a, b) => (a.averRating > b.averRating) ? 1 : -1))
-    }
-    else {
-      console.log(peliculas.sort((a, b) => (a.averRating < b.averRating) ? 1 : -1))
-      setPeliculas(peliculas.sort((a, b) => (a.averRating < b.averRating) ? 1 : -1))
-    }
-  }
-
   const handleDescChange = (event) => {
     if (event.target.value === "true") {
       setPeliculas([])
@@ -118,6 +107,7 @@ const Main = () => {
       <div className={stiles.styles}>
         <h1>Peliculas</h1>
         <button onClick={() => navigate("/actor")}>Actores</button>
+        <button onClick={() => navigate("/addSequel")}>Agregar Secuela</button>
         <input
           type="text"
           value={searchTerm}
