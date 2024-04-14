@@ -13,7 +13,6 @@ const Actores = () => {
             try {
                 const response = await axios.get(`${apiUrl}/actores/info`);
                 setActores(response.data); // Establecer actores en el estado con los datos recibidos
-                console.log(`Cantidad de actores recibidos: ${response.data.length}`); // Mostrar la cantidad de actores en la consola
             } catch (error) {
                 console.error('Error al cargar actores:', error);
             }
