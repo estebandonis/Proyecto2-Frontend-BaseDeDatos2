@@ -1,0 +1,57 @@
+.wrapper {
+  width: 400px;
+}
+
+.wrapper:hover .caption {
+  visibility: visible;
+  transform: rotateX(0deg)
+}
+
+.caption {
+  visibility: hidden;
+  background-color: white;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  height: 240px;
+  width: 400px;
+  bottom: -15px;
+  border-radius: 5px 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  position: relative;
+  transition: .5s;
+}
+
+.caption h3 {
+  padding: 5px;
+  overflow: hidden;
+  width: 200px;
+}
+
+.card {
+  height: 100px;
+  width: 400px;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.card img {
+  height: 100px;
+  width: 400px;
+  border-radius: 3px;
+}
+
+.name {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card:hover {
+  cursor: pointer;
+}

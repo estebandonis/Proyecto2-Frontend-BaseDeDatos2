@@ -137,14 +137,15 @@ const Main = () => {
           </select>
           {peliculas.length !== 0 ?
           <div className={stiles.listMovies}>
-            {peliculas.map((pelicula, index) => (
+            {peliculas.map((pel, index) => (
               <Pelicula key={index}
-                clasificacion={pelicula.clasificacion}
-                duracion={pelicula.duracion}
-                sinopsis={pelicula.sinopsis}
-                titulo={pelicula.titulo}
-                year={pelicula.year}
-                averRating={pelicula.averRating}
+                clasificacion={pel.clasificacion}
+                duracion={pel.duracion}
+                sinopsis={pel.sinopsis}
+                titulo={pel.titulo}
+                year={pel.year}
+                averRating={pel.averRating}
+                genero={pel.genero}
               />
             ))}
           </div> : null}
