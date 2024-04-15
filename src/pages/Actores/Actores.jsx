@@ -10,6 +10,7 @@ const Actores = () => {
     const [apellidoActorAEliminar, setApellidoActorAEliminar] = useState('');
     const [showEliminarInput, setShowEliminarInput] = useState(false);
     const [showCrearActorInputs, setShowCrearActorInputs] = useState(false);
+    const [showCrearActordirectorInputs, setShowCrearActordirectorInputs] = useState(false);
     const [nuevoActor, setNuevoActor] = useState({
         nombre: '',
         apellido: '',
@@ -100,8 +101,44 @@ const Actores = () => {
         }
     };
 
+    const handleCrearNuevoActordirector = async () => {
+        try {
+            const response = await axios.post(`${apiUrl}/actores/create_multi_label_node`, {
+                labels: ['Actor', 'Director'],
+                properties: nuevoActor
+            });
+            console.log(response.data); // Mensaje de confirmación de creación
+    
+            // Mostrar alerta de éxito
+            alert('¡Actor creado exitosamente!');
+    
+            // Limpiar los campos de entrada y ocultar los inputs
+            setNuevoActor({
+                nombre: '',
+                apellido: '',
+                yearBorn: '',
+                nacionalidad: '',
+                premios: ''
+            });
+            setShowCrearActordirectorInputs(false);
+    
+            // Actualizar la lista de actores después de la creación
+            fetchActores();
+        } catch (error) {
+            console.error('Error al crear el actor:', error);
+    
+            // Mostrar alerta de error
+            alert('Error al crear el actor. Por favor, inténtalo de nuevo.');
+        }
+    };
+    
+
     const handleButton1Click = () => {
         setShowCrearActorInputs(true);
+    };
+
+    const handleButton2Click = () => {
+        setShowCrearActordirectorInputs(true);
     };
 
     const handleButton4Click = () => {
@@ -173,10 +210,53 @@ const Actores = () => {
                     </div>
                 )}
 
+                {/* Mostrar inputs para crear un nuevo actor si showCrearActordirectorInputs es true */}
+                {showCrearActordirectorInputs && (
+                    <div>
+                        <input
+                            type="text"
+                            name="nombre"
+                            value={nuevoActor.nombre}
+                            onChange={handleInputChange}
+                            placeholder="Nombre del actor"
+                        />
+                        <input
+                            type="text"
+                            name="apellido"
+                            value={nuevoActor.apellido}
+                            onChange={handleInputChange}
+                            placeholder="Apellido del actor"
+                        />
+                        <input
+                            type="text"
+                            name="yearBorn"
+                            value={nuevoActor.yearBorn}
+                            onChange={handleInputChange}
+                            placeholder="Año de nacimiento"
+                        />
+                        <input
+                            type="text"
+                            name="nacionalidad"
+                            value={nuevoActor.nacionalidad}
+                            onChange={handleInputChange}
+                            placeholder="Nacionalidad"
+                        />
+                        <input
+                            type="text"
+                            name="premios"
+                            value={nuevoActor.premios}
+                            onChange={handleInputChange}
+                            placeholder="Premios"
+                        />
+                        <button onClick={handleCrearNuevoActordirector}>Crear</button>
+                    </div>
+                )}
+
                 {/* Botones adicionales */}
                 <div>
-                    <button onClick={handleButton1Click}>Crear nodo con 1 label</button>
-                    <button onClick={handleButton4Click}>Eliminar 1 nodo</button>
+                    <button onClick={handleButton1Click}>Crear un actor</button>
+                    <button onClick={handleButton2Click}>Crear actor, director</button>
+                    <button onClick={handleButton4Click}>Eliminar 1 actor</button>
                 </div>
             </div>
             <table className={styles.actorTable}>
