@@ -2,7 +2,7 @@ import estilos from './Pelicula.module.css'
 
 import PropTypes from 'prop-types';
 
-const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year, averRating, genero }) => {
+const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year, averRating, genero, directorName, directorApellido, actorName, actorApellido }) => {
 
     return (
         <div className={estilos.wrapper}>
@@ -18,6 +18,10 @@ const Pelicula = ({ clasificacion, duracion, sinopsis, titulo, year, averRating,
                     null : <p>Rating: {averRating.toFixed(2)}</p>}
                     {genero === undefined ?
                     null : <p>Genero: {genero}</p>}
+                    {directorName === undefined ?
+                    null : <p>Director: {directorName} {directorApellido}</p>}
+                    {actorName === undefined ?
+                    null : <p>Actor Principal: {actorName} {actorApellido}</p>}
                 </div>
             </div>
         </div>
@@ -31,7 +35,11 @@ Pelicula.propTypes = {
     titulo: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     averRating: PropTypes.number,
-    genero: PropTypes.string
+    genero: PropTypes.string,
+    directorName: PropTypes.string,
+    directorApellido: PropTypes.string,
+    actorName: PropTypes.string,
+    actorApellido: PropTypes.string
 };
 
 export default Pelicula;
