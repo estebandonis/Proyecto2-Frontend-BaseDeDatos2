@@ -112,6 +112,7 @@ const Main = () => {
         <h1>Peliculas</h1>
         <button onClick={() => navigate("/actor")}>Actores</button>
         <button onClick={() => navigate("/addSequel")}>Agregar Secuela</button>
+        <button onClick={() => navigate("/users")}>Usuarios</button>
         <input
           type="text"
           value={searchTerm}
