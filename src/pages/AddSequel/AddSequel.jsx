@@ -3,6 +3,7 @@ import { navigate } from "@store";
 import axios from "axios";
 
 import { useApi } from "@hooks";
+import { Pelicula, Relation } from "@components";
 import stiles from "./AddSequel.module.css";
 
 const AddSequel = () => {
@@ -13,6 +14,10 @@ const AddSequel = () => {
   const [segunda, setSegunda] = useState("");
   const [orden, setOrden] = useState("true");
   const [continuation, setContinuation] = useState("true")
+  const [primeraSearch, setPrimeraSearch] = useState("");
+  const [segundaSearch, setSegundaSearch] = useState("");
+  const [relacion, setRelation] = useState([]);
+
 
   const setSecuela = async () => {
     await axios
@@ -31,6 +36,19 @@ const AddSequel = () => {
       });
   };
 
+  const searchSecuela = async () => {
+    await axios
+      .post(`${apiUrl}/peliculas/getMovieSequel`, {first: primeraSearch, second: segundaSearch})
+      .then((response) => {
+        console.log(response.data);
+        setRelation(response.data);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.log("An error occurred while retrieving data", error);
+      });
+  }
+
   const handlePrimeraChange = (event) => {
     setPrimera(event.target.value);
   };
@@ -47,6 +65,14 @@ const AddSequel = () => {
     setContinuation(event.target.value)
   }
 
+  const handlePrimeraSearchChange = (event) => {
+    setPrimeraSearch(event.target.value);
+  };
+
+  const handleSecondSearchChange = (event) => {
+    setSegundaSearch(event.target.value);
+  };
+
   useEffect(() => {
     console.log("Primera: ", primera)
     console.log("Segunda: ", segunda)
@@ -58,7 +84,7 @@ const AddSequel = () => {
     <div className={stiles.bigStyles}>
       <div className={stiles.styles}>
         <h1>Agregar Secuela Peliculas</h1>
-        <button onClick={() => navigate("/main")}>Actores</button>
+        <button onClick={() => navigate("/main")}>Main</button>
 
         <input
           type="text"
@@ -86,6 +112,53 @@ const AddSequel = () => {
         </select>
 
         <button onClick={() => setSecuela()}>Crear Secuela</button>
+
+        <input
+          type="text"
+          value={primeraSearch}
+          onChange={handlePrimeraSearchChange}
+          placeholder="Ingrese la pelicula original"
+        />
+
+        <input
+          type="text"
+          value={segundaSearch}
+          onChange={handleSecondSearchChange}
+          placeholder="Ingrese la pelicula secuela"
+        />
+
+        <button onClick={() => searchSecuela()}>Buscar Relación</button>
+
+        {relacion.length !== 0 ?
+          <div className={stiles.relation}>
+            
+            <Pelicula
+              clasificacion={relacion[0].clasificacion}
+              duracion={relacion[0].duracion}
+              sinopsis={relacion[0].sinopsis}
+              titulo={relacion[0].titulo}
+              year={relacion[0].year}
+              averRating={relacion[0].averRating}
+            />
+            
+            <Relation
+              diferenciaTime={relacion[2].diferenciaTiempo}
+              orden={relacion[2].orden}
+              esContinuacion={relacion[2].esContinuacion}
+            />
+
+            <Pelicula
+              clasificacion={relacion[1].clasificacion}
+              duracion={relacion[1].duracion}
+              sinopsis={relacion[1].sinopsis}
+              titulo={relacion[1].titulo}
+              year={relacion[1].year}
+              averRating={relacion[1].averRating}
+            />
+            
+          </div>
+        : null}
+
       </div>
     </div>
   );

@@ -15,6 +15,8 @@ const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [pelicula, setPelicula] = useState([]);
   const [peliculas, setPeliculas] = useState([]);
+  const [peliculasDirector, setPeliculasDirector] = useState([]);
+  const [peliculasActor, setPeliculasActor] = useState([]);
   const [desc, setDesc] = useState(true)
 
   const handleSearchChange = (event) => {
@@ -49,12 +51,12 @@ const Main = () => {
     }
   };
 
-  const getPeliculasByDirector = async (preferencia) => {
+  const getPeliculasByDirector = async () => {
     await axios
-      .post(`${apiUrl}/peliculas/getMovieGenero`, {genero: preferencia})
+      .post(`${apiUrl}/peliculas/getMovieDirector`, {user: user.correo})
       .then((response) => {
         console.log(response.data);
-        setPeliculas([...peliculas, ...response.data]);
+        setPeliculasDirector([...peliculas, ...response.data]);
       })
       .catch((error) => {
         // Handle the error
@@ -62,12 +64,12 @@ const Main = () => {
       });
   }; 
 
-  const getPeliculasByActor = async (preferencia) => {
+  const getPeliculasByActor = async () => {
     await axios
-      .post(`${apiUrl}/peliculas/getMovieGenero`, {genero: preferencia})
+      .post(`${apiUrl}/peliculas/getMovieActor`, {user: user.correo})
       .then((response) => {
         console.log(response.data);
-        setPeliculas([...peliculas, ...response.data]);
+        setPeliculasActor([...peliculas, ...response.data]);
       })
       .catch((error) => {
         // Handle the error
@@ -96,6 +98,8 @@ const Main = () => {
 
   useEffect(() => {
     getRecomendations();
+    getPeliculasByDirector();
+    getPeliculasByActor();
   }, []);
 
   useEffect(() => {
@@ -130,21 +134,56 @@ const Main = () => {
             ))}
           </div> : null}
           
-          <h1>Recomendaciones basandonos en tus generos preferidos</h1>
+          <h1>Recomendaciones basándonos en tus generos preferidos</h1>
           <select onChange={handleDescChange}>
             <option value="true">Descendente</option>
             <option value="false">Ascendente</option>
           </select>
           {peliculas.length !== 0 ?
           <div className={stiles.listMovies}>
-            {peliculas.map((pelicula, index) => (
+            {peliculas.map((pel, index) => (
               <Pelicula key={index}
-                clasificacion={pelicula.clasificacion}
-                duracion={pelicula.duracion}
-                sinopsis={pelicula.sinopsis}
-                titulo={pelicula.titulo}
-                year={pelicula.year}
-                averRating={pelicula.averRating}
+                clasificacion={pel.clasificacion}
+                duracion={pel.duracion}
+                sinopsis={pel.sinopsis}
+                titulo={pel.titulo}
+                year={pel.year}
+                averRating={pel.averRating}
+                genero={pel.genero}
+              />
+            ))}
+          </div> : null}
+
+          <h1>Recomendaciones basándonos en tus directores favoritos</h1>
+
+          {peliculasDirector.length !== 0 ?
+          <div className={stiles.listMovies}>
+            {peliculasDirector.map((pel, index) => (
+              <Pelicula key={index}
+                clasificacion={pel.clasificacion}
+                duracion={pel.duracion}
+                sinopsis={pel.sinopsis}
+                titulo={pel.titulo}
+                year={pel.year}
+                directorName={pel.nombre}
+                directorApellido={pel.apellido}
+              />
+            ))}
+          </div> : null}
+
+          <h1>Recomendaciones basándonos en tus actores favoritos</h1>
+
+          {peliculasActor.length !== 0 ?
+          <div className={stiles.listMovies}>
+            {peliculasActor.map((pel, index) => (
+              <Pelicula key={index}
+                clasificacion={pel.clasificacion}
+                duracion={pel.duracion}
+                sinopsis={pel.sinopsis}
+                titulo={pel.titulo}
+                year={pel.year}
+                actorName={pel.nombre}
+                actorApellido={pel.apellido}
               />
             ))}
           </div> : null}
