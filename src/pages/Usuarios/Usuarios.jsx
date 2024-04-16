@@ -147,7 +147,7 @@ const Usuarios = () => {
                 data: relaciones
             });
             alert("Relaciones actualzadas")
-            showRels(null);
+            setShowRels(null);
         } catch (error) {
             console.error('Error al subir cambios:', error);
         }
@@ -167,6 +167,7 @@ const Usuarios = () => {
                     <h3>{label}</h3><br/>
                     {label == "AMIGO" ? relAmigos.map((rel, index) => (
                     <div>
+                    <h4>Amigo: {rel.nombre} {rel.apellido}</h4>
                     <label>Fecha</label>
                     <input type='text' value={rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
@@ -181,6 +182,7 @@ const Usuarios = () => {
 
                     {label == "WATCHED" ? relVistos.map((rel, index) => (
                     <div>
+                    <h4>Pelicula: {rel.titulo}</h4>
                     <label>Fecha Visto</label>
                     <input type='text' value={rel.watchedDate} 
                         onChange={(e) => handleRelUpdate(index, "watchedDate", e.target.value)} />
@@ -195,6 +197,7 @@ const Usuarios = () => {
 
                     {label == "LIKED_ACTOR" ? relActores.map((rel, index) => (
                     <div>
+                    <h4>Actor: {rel.nombre} {rel.apellido}</h4>
                     <label>Fecha</label>
                     <input type='text' value={rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
@@ -209,6 +212,7 @@ const Usuarios = () => {
 
                     {label == "LIKED_DIRECTOR" ? relDirectores.map((rel, index) => (
                     <div>
+                    <h4>Director: {rel.nombre} {rel.apellido}</h4>
                     <label>Fecha</label>
                     <input type='text' value={rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
@@ -223,6 +227,7 @@ const Usuarios = () => {
 
                     {label == "LIKED_GENRE" ? relGeneros.map((rel, index) => (
                     <div>
+                    <h4>Genero: {rel.nombre} </h4><br/>
                     <label>Fecha</label>
                     <input type='text' value={rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
