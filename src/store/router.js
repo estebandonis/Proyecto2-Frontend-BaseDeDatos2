@@ -5,5 +5,6 @@ export default createRouter([
   ["/main", () => ({ page: "main" })],
   ["/addSequel", () => ({ page: "addSequel" })],
   ["/login", () => ({ page: "login" })],
-  ["/actor", () => ({ page: "actor" })]
+  ["/actor", () => ({ page: "actor" })],
+  ["/users", () => ({ page: "users" })],
 ]);
