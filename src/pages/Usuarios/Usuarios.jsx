@@ -172,10 +172,10 @@ const Usuarios = () => {
                     <input type='text' value={rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
                     <label>Seguido</label>
-                    <input type='text' value={rel.seguido.toString()} 
+                    <input type='text' value={rel.seguido} 
                         onChange={(e) => handleRelUpdate(index, "seguido", e.target.value)} />
                     <label>Amigo</label>
-                    <input type='text' value={rel.amigo.toString()} 
+                    <input type='text' value={rel.amigo} 
                         onChange={(e) => handleRelUpdate(index, "amigo", e.target.value)} />
                     </div>
                     )): null}
@@ -190,7 +190,7 @@ const Usuarios = () => {
                     <input type='text' value={rel.rating} 
                         onChange={(e) => handleRelUpdate(index, "rating", e.target.value)} />
                     <label>Favorito</label>
-                    <input type='text' value={rel.favorite.toString()} 
+                    <input type='text' value={rel.favorite} 
                         onChange={(e) => handleRelUpdate(index, "favorite", e.target.value)} />
                     </div>
                     )): null}
