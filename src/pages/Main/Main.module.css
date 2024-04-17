@@ -13,6 +13,45 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.styles input {
+    width: 50%;
+    height: 50px;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.styles button {
+    width: 50%;
+    height: 50px;
+    margin: 10px;
+    font-size: 15px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.styles button:hover {
+    border: 2px solid white;
+}
+
+.styles select {
+    width: 50%;
+    height: 50px;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    border: 1px solid #000;
+    border-radius: 5px;
 }
 
 .listMovies {

@@ -17,6 +17,8 @@ const AddSequel = () => {
   const [primeraSearch, setPrimeraSearch] = useState("");
   const [segundaSearch, setSegundaSearch] = useState("");
   const [relacion, setRelation] = useState([]);
+  const [linkNodes, setLinkNodes] = useState("");
+  const [linkRelations, setLinkRelations] = useState("");
 
 
   const setSecuela = async () => {
@@ -73,6 +75,45 @@ const AddSequel = () => {
     setSegundaSearch(event.target.value);
   };
 
+  const handleLinkNodesChange = (event) => {
+    setLinkNodes(event.target.value);
+  };
+
+  const handleLinkRelationsChange = (event) => {
+    setLinkRelations(event.target.value);
+  };
+
+  const uploadLinkNodes = async () => {
+    await axios
+      .post(`${apiUrl}/peliculas/upload_csv_nodes`, {link: linkNodes})
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          alert("Se han agregado los nodos correctamente")
+        } else {
+          alert("No se ha podido agregar los nodos")
+        }
+      })
+      .catch((error) => {
+        // Handle the error
+        console.log("Ocurrio un error con el link", error);
+      });
+  }
+
+  const uploadLinkRelations = async () => {
+    await axios
+      .post(`${apiUrl}/peliculas/upload_csv_relaciones`, {link: linkRelations})
+      .then((response) => {
+        console.log(response.data);
+        setPrimeraSearch(response.data[0][0])
+        setSegundaSearch(response.data[0][1])
+      })
+      .catch((error) => {
+        // Handle the error
+        console.log("Ocurrio un error con el link", error);
+      });
+  }
+
   useEffect(() => {
     console.log("Primera: ", primera)
     console.log("Segunda: ", segunda)
@@ -85,6 +126,10 @@ const AddSequel = () => {
       <div className={stiles.styles}>
         <h1>Agregar Secuela Peliculas</h1>
         <button onClick={() => navigate("/main")}>Main</button>
+
+        <br />
+
+        <h2>Crear Secuela</h2>
 
         <input
           type="text"
@@ -99,8 +144,7 @@ const AddSequel = () => {
           onChange={handleSecondChange}
           placeholder="Ingrese la pelicula secuela"
         />
-          
-        <h1>Recomendaciones basandonos en tus generos preferidos</h1>
+
         <select onChange={handleOrdenChange}>
           <option value="true">Es orden</option>
           <option value="false">No es orden</option>
@@ -112,6 +156,30 @@ const AddSequel = () => {
         </select>
 
         <button onClick={() => setSecuela()}>Crear Secuela</button>
+
+        <br />
+
+        <h2>Crear Secuela desde .csv</h2>
+
+        <input
+          type="text"
+          value={linkNodes}
+          onChange={handleLinkNodesChange}
+          placeholder="Subir nodos y relaciones desde link"
+        />
+        <button onClick={uploadLinkNodes}>Crear</button>
+
+        <input
+          type="text"
+          value={linkRelations}
+          onChange={handleLinkRelationsChange}
+          placeholder="Subir nodos y relaciones desde link"
+        />
+        <button onClick={uploadLinkRelations}>Crear</button>
+
+        <br />
+
+        <h2>Buscar Secuela</h2>
 
         <input
           type="text"

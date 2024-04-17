@@ -97,6 +97,7 @@ const Main = () => {
   }
 
   useEffect(() => {
+    console.log(user)
     getRecomendations();
     getPeliculasByDirector();
     getPeliculasByActor();
