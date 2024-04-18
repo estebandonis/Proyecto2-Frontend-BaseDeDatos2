@@ -70,30 +70,37 @@ const Usuarios = () => {
     };
 
     const handleRelUpdate = (index, prop, value) => {
+        let val = value;
+        if (!isNaN(val) && !isNaN(parseFloat(val)))
+            val = (+val);
+        if (val == 'false')
+            val = false;
+        if (val == 'true')
+            val = true
         switch (label) {
             case "AMIGO":
                 const modRel1 = [...relAmigos];
-                modRel1[index][prop] = value;
+                modRel1[index][prop] = val;
                 setRelAmigos(modRel1);
                 break;
             case "WATCHED":
                 const modRel2 = [...relVistos];
-                modRel2[index][prop] = value;
+                modRel2[index][prop] = val;
                 setRelVistos(modRel2);
                 break;
             case "LIKED_ACTOR":
                 const modRel3= [...relActores];
-                modRel3[index][prop] = value;
+                modRel3[index][prop] = val;
                 setRelActores(modRel3);
                 break;
             case "LIKED_DIRECTOR":
                 const modRel4= [...relDirectores];
-                modRel4[index][prop] = value;
+                modRel4[index][prop] = val;
                 setRelDirectores(modRel4);
                 break;
             case "LIKED_GENRE":
                 const modRel5= [...relGeneros];
-                modRel5[index][prop] = value;
+                modRel5[index][prop] = val;
                 setRelGeneros(modRel5);
                 break;
         
@@ -103,8 +110,15 @@ const Usuarios = () => {
     };
 
     const handleNodesUpdate = (index, prop, value) => {
+        let val = value;
+        if (!isNaN(val) && !isNaN(parseFloat(val)))
+            val = (+val);
+        else if (val == 'false')
+            val = false;
+        else if (val == 'true')
+            val = true;
         const modUsuarios = [...usuarios]
-        modUsuarios[index][prop] = value
+        modUsuarios[index][prop] = val
         setUsuarios(modUsuarios)
     };
 
@@ -169,13 +183,13 @@ const Usuarios = () => {
                     <div>
                     <h4>Amigo: {rel.nombre} {rel.apellido}</h4>
                     <label>Fecha</label>
-                    <input type='text' value={rel.fecha} 
+                    <input type='text' value={rel.fecha == undefined ? "" : rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
                     <label>Seguido</label>
-                    <input type='text' value={rel.seguido} 
+                    <input type='text' value={rel.seguido == undefined ? "" : rel.seguido} 
                         onChange={(e) => handleRelUpdate(index, "seguido", e.target.value)} />
                     <label>Amigo</label>
-                    <input type='text' value={rel.amigo} 
+                    <input type='text' value={rel.amigo == undefined ? "" : rel.amigo} 
                         onChange={(e) => handleRelUpdate(index, "amigo", e.target.value)} />
                     </div>
                     )): null}
@@ -184,13 +198,13 @@ const Usuarios = () => {
                     <div>
                     <h4>Pelicula: {rel.titulo}</h4>
                     <label>Fecha Visto</label>
-                    <input type='text' value={rel.watchedDate} 
+                    <input type='text' value={rel.watchedDate == undefined ? "" : rel.watchedDate} 
                         onChange={(e) => handleRelUpdate(index, "watchedDate", e.target.value)} />
                     <label>Rating</label>
-                    <input type='text' value={rel.rating} 
+                    <input type='text' value={rel.rating == undefined ? "" : rel.rating} 
                         onChange={(e) => handleRelUpdate(index, "rating", e.target.value)} />
                     <label>Favorito</label>
-                    <input type='text' value={rel.favorite} 
+                    <input type='text' value={rel.favorite == undefined ? "" : rel.favorite} 
                         onChange={(e) => handleRelUpdate(index, "favorite", e.target.value)} />
                     </div>
                     )): null}
@@ -199,13 +213,13 @@ const Usuarios = () => {
                     <div>
                     <h4>Actor: {rel.nombre} {rel.apellido}</h4>
                     <label>Fecha</label>
-                    <input type='text' value={rel.fecha} 
+                    <input type='text' value={rel.fecha == undefined ? "" : rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
                     <label>Calificacion</label>
-                    <input type='text' value={rel.calificacion} 
+                    <input type='text' value={rel.calificacion == undefined ? "" : rel.calificacion} 
                         onChange={(e) => handleRelUpdate(index, "calificacion", e.target.value)} />
                     <label>Es publico</label>
-                    <input type='text' value={rel.isPublic} 
+                    <input type='text' value={rel.isPublic == undefined ? "" : rel.isPublic} 
                         onChange={(e) => handleRelUpdate(index, "isPublic", e.target.value)} />
                     </div>
                     )): null}
@@ -214,13 +228,13 @@ const Usuarios = () => {
                     <div>
                     <h4>Director: {rel.nombre} {rel.apellido}</h4>
                     <label>Fecha</label>
-                    <input type='text' value={rel.fecha} 
+                    <input type='text' value={rel.fecha == undefined ? "" : rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
                     <label>Calificacion</label>
-                    <input type='text' value={rel.calificacion} 
+                    <input type='text' value={rel.calificacion == undefined ? "" : rel.calificacion} 
                         onChange={(e) => handleRelUpdate(index, "calificacion", e.target.value)} />
                     <label>Es publico</label>
-                    <input type='text' value={rel.isPublic} 
+                    <input type='text' value={rel.isPublic == undefined ? "" : rel.isPublic} 
                         onChange={(e) => handleRelUpdate(index, "isPublic", e.target.value)} />
                     </div>
                     )): null}
@@ -229,13 +243,13 @@ const Usuarios = () => {
                     <div>
                     <h4>Genero: {rel.nombre} </h4><br/>
                     <label>Fecha</label>
-                    <input type='text' value={rel.fecha} 
+                    <input type='text' value={rel.fecha == undefined ? "" : rel.fecha} 
                         onChange={(e) => handleRelUpdate(index, "fecha", e.target.value)} />
                     <label>Preferencia</label>
-                    <input type='text' value={rel.preferencia} 
+                    <input type='text' value={rel.preferencia == undefined ? "" : rel.preferencia} 
                         onChange={(e) => handleRelUpdate(index, "preferencia", e.target.value)} />
                     <label>Es publico</label>
-                    <input type='text' value={rel.isPublic} 
+                    <input type='text' value={rel.isPublic == undefined ? "" : rel.isPublic} 
                         onChange={(e) => handleRelUpdate(index, "isPublic", e.target.value)} />
                     </div>
                     )): null}
